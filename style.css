@@ -5,6 +5,9 @@
   --muted: #5b6270;
   --tint: #0066da;
   --border: #e3e6eb;
+  /* Filled buttons have their own colors: white text stays at least 4.5:1 in both themes (Codex audit 032 A2). */
+  --button-bg: #0066da; /* white on it: 5.37:1 */
+  --button-text: #ffffff;
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
@@ -15,6 +18,8 @@
     --muted: #a3aab6;
     --tint: #5aa2ff;
     --border: #2a2e36;
+    --button-bg: #0a5bc4; /* white on it: 6.35:1; links keep --tint, 6.47:1 on the cards */
+    --button-text: #ffffff;
   }
 }
 * { box-sizing: border-box; }
@@ -35,5 +40,7 @@ p, li { color: var(--text); }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 16px 0; }
 a { color: var(--tint); }
 nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 15px; }
-.button { display: inline-block; background: var(--tint); color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 600; }
+.button { display: inline-block; max-width: 100%; overflow-wrap: anywhere; background: var(--button-bg); color: var(--button-text); text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 600; }
 ul { padding-left: 22px; }
+/* Long addresses (the support email) wrap on narrow phones instead of widening the page. */
+p, li, nav a { overflow-wrap: anywhere; }
